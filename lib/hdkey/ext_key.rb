@@ -1,3 +1,5 @@
+require 'bech32'
+
 module Bitcoin
 
   def self.hmac_sha512(key, data)
@@ -66,6 +68,11 @@ module Bitcoin
     # get address
     def addr
       priv_key.addr
+    end
+
+    # get segwit p2wpkh address
+    def segwit_addr
+      ext_pubkey.segwit_addr
     end
 
     # get key identifier
@@ -137,6 +144,16 @@ module Bitcoin
     # get address
     def addr
       Bitcoin.hash160_to_address(Bitcoin.hash160(pub))
+    end
+
+    # get segwit p2wpkh address
+    def segwit_addr
+      hash160 = Bitcoin.hash160(pub)
+      p2wpkh = [ ["00", "14", hash160].join ].pack("H*").bth
+      segwit_addr = Bech32::SegwitAddr.new
+      segwit_addr.hrp =  Bitcoin.network[:address_version] == '00' ? 'bc' : 'tb'
+      segwit_addr.script_pubkey = p2wpkh
+      segwit_addr.addr
     end
 
     # get key identifier

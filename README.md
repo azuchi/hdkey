@@ -1,5 +1,5 @@
 # Hierarchical Deterministic key derivation for Ruby
-[![Build Status](https://travis-ci.org/azuchi/hdkey.svg?branch=master)](https://travis-ci.org/azuchi/hdkey) [![Gem Version](https://badge.fury.io/rb/hdkey.svg)](https://badge.fury.io/rb/hdkey) [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
+[![Build Status](https://travis-ci.org/azuchi/hdkey.svg?branch=master)](https://travis-ci.org/azuchi/hdkey) [![Gem Version](https://badge.fury.io/rb/hdkey.svg)](https://badge.fury.io/rb/hdkey) [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE) <img src="http://segwit.co/static/public/images/logo.png" width="100">
 
 The implementation of Bitcoin hierarchical deterministic key for Ruby.
 
@@ -58,8 +58,16 @@ key.fingerprint
 key.chain_code
 => '47fdacbd0f1097043b78c63c20c34ef4ed9a111d980047ad16282c7ae6236141'
 
-key.priv_key.priv
+key.priv
 => 'edb2e14f9ee77d26dd93b4ecede8d16ed408ce149b6cd80b0715a2d911a0afea'
+
+# P2PKH address
+key.addr
+=> '19Q2WoS5hSS6T8GjhK8KZLMgmWaq4neXrh'
+
+# Segwit address(P2WPKH)
+key.segwit_addr
+=> 'bc1qtsdavj8dyw49l4gt554jg47pr60gpf48ww2ens'
 
 key.to_base58
 => 'xprv9uHRZZhk6KAJC1avXpDAp4MDc3sQKNxDiPvvkX8Br5ngLNv1TxvUxt4cV1rGL5hj6KCesnDYUhd7oWgT11eZG7XnxHrnYeSvkzY7d2bhkJ7'
@@ -67,8 +75,27 @@ key.to_base58
 key.ext_pubkey.to_base58
 => 'xpub68Gmy5EdvgibQVfPdqkBBCHxA5htiqg55crXYuXoQRKfDBFA1WEjWgP6LHhwBZeNK1VTsfTFUHCdrfp1bgwQ9xv5ski8PX9rL2dZXvgGDnw'
 
+# P2PKH address
+key.ext_pubkey.addr
+=> '19Q2WoS5hSS6T8GjhK8KZLMgmWaq4neXrh'
+
+# Segwit address(P2WPKH)
+key.ext_pubkey.segwit_addr
+=> 'bc1qtsdavj8dyw49l4gt554jg47pr60gpf48ww2ens'
+
 # derive child(m/0H/1)
 child_key = key.derive(1)
+
+# For testnet
+Bitcoin.network = :testnet3
+
+# testnet P2PKH address
+key.addr
+=> 'mouyorX4WTsMEEkMQt6hPFa1dWBXws2Yos'
+
+# testnet Segwit address(P2WPKH)
+key.segwit_addr
+=> 'tb1qtsdavj8dyw49l4gt554jg47pr60gpf48yg32gr'
 ```
 
 ### import key
