@@ -1,6 +1,10 @@
 # Hierarchical Deterministic key derivation for Ruby
 [![Build Status](https://travis-ci.org/azuchi/hdkey.svg?branch=master)](https://travis-ci.org/azuchi/hdkey) [![Gem Version](https://badge.fury.io/rb/hdkey.svg)](https://badge.fury.io/rb/hdkey) [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE) <img src="http://segwit.co/static/public/images/logo.png" width="100">
 
+## Deprecated
+
+This library was merged into bitcoin-ruby v0.0.11, so please use it.
+
 The implementation of Bitcoin hierarchical deterministic key for Ruby.
 
 Bitcoin hierarchical deterministic key is defined by [BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki).
